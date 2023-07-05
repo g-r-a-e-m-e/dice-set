@@ -211,10 +211,6 @@ const tick = () =>
         d100.scene.position.x = (Math.cos(rot + Math.PI * 4 / 3) * 3)
         d100.scene.position.z = Math.sin(rot * 0.5)
     }
-    
-    // Update camera
-    camera.position.x = Math.sin(rot) * 0.25
-    camera.position.y = Math.cos(rot) * 0.25
 
     // Update controls
     controls.update()
