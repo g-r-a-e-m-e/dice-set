@@ -12,8 +12,8 @@ const gltfLoader = new GLTFLoader()
 /**
  * Base
  */
-// Debug
-const gui = new dat.GUI()
+// // Debug
+// const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -24,8 +24,8 @@ const scene = new THREE.Scene()
 /**
  * Models
  */
-let d20;
 // D20
+let d20;
 gltfLoader.load(
     '/dice/d20.glb',
     (gltf) =>
@@ -33,6 +33,18 @@ gltfLoader.load(
         d20 = gltf
         d20.scene.position.set(0, 0, 0)
         scene.add(d20.scene)
+    }
+)
+
+// D4
+let d4;
+gltfLoader.load(
+    '/dice/d4.glb',
+    (gltf) =>
+    {
+        d4 = gltf
+        d4.scene.position.set(-3, 0, 0)
+        scene.add(d4.scene)
     }
 )
 
@@ -83,7 +95,7 @@ window.addEventListener('resize', () =>
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 1
 camera.position.y = 1
-camera.position.z = 5
+camera.position.z = 8
 scene.add(camera)
 
 // Controls
@@ -107,12 +119,21 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
-    const rot = elapsedTime * Math.PI * 0.5
+    const rot = elapsedTime * Math.PI * 0.25
     if(d20)
     {
         d20.scene.rotation.y = rot
         d20.scene.rotation.z = rot * 0.5
     }
+    if(d4)
+    {
+        d4.scene.rotation.y = rot * 1.1
+        d4.scene.rotation.z = rot * 1.1 * 0.5
+        d4.scene.position.y = -Math.sin(rot) * 3
+        d4.scene.position.x = Math.cos(rot) * 3
+        d4.scene.position.z = Math.sin(rot * 0.5)
+    }
+    
 
     // Update controls
     controls.update()
