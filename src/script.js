@@ -43,7 +43,7 @@ gltfLoader.load(
     (gltf) =>
     {
         d4 = gltf
-        d4.scene.position.set(-2.5, 0, 0)
+        d4.scene.position.set(-3, 0, 0)
         scene.add(d4.scene)
     }
 )
@@ -55,7 +55,7 @@ gltfLoader.load(
     (gltf) =>
     {
         d6 = gltf
-        d6.scene.position.set(-5, 0, 0)
+        d6.scene.position.set(-3, 0, 0)
         scene.add(d6.scene)
     }
 )
@@ -67,7 +67,7 @@ gltfLoader.load(
     (gltf) =>
     {
         d8 = gltf
-        d8.scene.position.set(-7.5, 0, 0)
+        d8.scene.position.set(-3, 0, 0)
         scene.add(d8.scene)
     }
 )
@@ -151,26 +151,26 @@ const tick = () =>
     }
     if(d4)
     {
-        d4.scene.rotation.y = rot * 1.1
-        d4.scene.rotation.z = rot * 1.1 * 0.5
-        d4.scene.position.y = -Math.sin(rot) * 2.5
-        d4.scene.position.x = Math.cos(rot) * 2.5
+        d4.scene.rotation.y = rot 
+        d4.scene.rotation.z = rot * 0.5
+        d4.scene.position.y = (-Math.sin(rot) * 3) 
+        d4.scene.position.x = (Math.cos(rot) * 3)
         d4.scene.position.z = Math.sin(rot * 0.5)
     }
     if(d6)
     {
-        d6.scene.rotation.y = rot * 1.2
-        d6.scene.rotation.z = rot * 1.2 * 0.5
-        d6.scene.position.y = -Math.sin(rot) * 5
-        d6.scene.position.x = -Math.cos(rot) * 5
+        d6.scene.rotation.y = rot
+        d6.scene.rotation.z = rot * 0.5
+        d6.scene.position.y = (-Math.sin(rot + Math.PI / 3) * 3)
+        d6.scene.position.x = (Math.cos(rot + Math.PI / 3) * 3)
         d6.scene.position.z = Math.sin(rot * 0.5)
     }
     if(d8)
     {
-        d8.scene.rotation.y = rot * 1.4
-        d8.scene.rotation.z = rot * 1.4 * 0.5
-        d8.scene.position.y = Math.sin(rot) * 7.5
-        d8.scene.position.x = -Math.cos(rot) * 7.5
+        d8.scene.rotation.y = rot
+        d8.scene.rotation.z = rot * 0.5
+        d8.scene.position.y = (-Math.sin(rot + Math.PI * 2 / 3) * 3)
+        d8.scene.position.x = (Math.cos(rot + Math.PI * 2/ 3) * 3)
         d8.scene.position.z = Math.sin(rot * 0.5)
     }
     
