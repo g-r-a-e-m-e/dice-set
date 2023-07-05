@@ -1,8 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import gsap from 'gsap'
-import * as dat from 'dat.gui'
 
 /**
  * Loaders
@@ -72,6 +70,17 @@ gltfLoader.load(
     }
 )
 
+// D10
+let d10;
+gltfLoader.load(
+    '/dice/d10.glb',
+    (gltf) =>
+    {
+        d10 = gltf
+        d10.scene.position.set(-3, 0, 0)
+        scene.add(d10.scene)
+    }
+)
 /**
  * Lights
  */
@@ -172,6 +181,14 @@ const tick = () =>
         d8.scene.position.y = (-Math.sin(rot + Math.PI * 2 / 3) * 3)
         d8.scene.position.x = (Math.cos(rot + Math.PI * 2/ 3) * 3)
         d8.scene.position.z = Math.sin(rot * 0.5)
+    }
+    if(d10)
+    {
+        d10.scene.rotation.y = rot
+        d10.scene.rotation.z = rot * 0.5
+        d10.scene.position.y = (-Math.sin(rot + Math.PI) * 3)
+        d10.scene.position.x = (Math.cos(rot + Math.PI) * 3)
+        d10.scene.position.z = Math.sin(rot * 0.5)
     }
     
     // Update camera
