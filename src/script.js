@@ -81,6 +81,19 @@ gltfLoader.load(
         scene.add(d10.scene)
     }
 )
+
+// D100
+let d100;
+gltfLoader.load(
+    '/dice/d100.glb',
+    (gltf) =>
+    {
+        d100 = gltf
+        d100.scene.position.set(-3, 0, 0)
+        scene.add(d100.scene)
+    }
+)
+
 /**
  * Lights
  */
@@ -189,6 +202,14 @@ const tick = () =>
         d10.scene.position.y = (-Math.sin(rot + Math.PI) * 3)
         d10.scene.position.x = (Math.cos(rot + Math.PI) * 3)
         d10.scene.position.z = Math.sin(rot * 0.5)
+    }
+    if(d100)
+    {
+        d100.scene.rotation.y = rot
+        d100.scene.rotation.z = rot * 0.5
+        d100.scene.position.y = (-Math.sin(rot + Math.PI * 4 / 3) * 3)
+        d100.scene.position.x = (Math.cos(rot + Math.PI * 4 / 3) * 3)
+        d100.scene.position.z = Math.sin(rot * 0.5)
     }
     
     // Update camera
