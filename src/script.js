@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
  * Loaders
  */
 const gltfLoader = new GLTFLoader()
+const textureLoader = new THREE.TextureLoader()
 
 /**
  * Base
@@ -124,6 +125,42 @@ directionalLight.position.set(5, 5, 5)
 scene.add(directionalLight)
 
 /**
+ * Particles
+ */
+// Texture
+const particleTexture = textureLoader.load('/particles/8.png')
+// Geometry
+const particlesGeometry = new THREE.BufferGeometry()
+const particleCount = 10 ** 4
+const positions = new Float32Array(particleCount * 3)
+const colors = new Float32Array(particleCount * 3)
+for(let i = 0; i < particleCount * 3; i ++)
+{
+    positions[i] = (Math.random() - 0.5) * 25
+    colors[i] = Math.random() 
+}
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3)) 
+
+// Material
+const particlesMaterial = new THREE.PointsMaterial({
+    size: 0.1,
+    sizeAttenuation: true,
+    transparent: true
+})
+particlesMaterial.map = particleTexture
+particlesMaterial.alphaMap = particleTexture
+particlesMaterial.depthTest = true
+particlesMaterial.depthWrite = true
+particlesMaterial.blending = THREE.AdditiveBlending
+particlesMaterial.vertexColors = true
+
+// Points
+const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+scene.add(particles)
+
+
+/**
  * Sizes
  */
 const sizes = {
@@ -177,6 +214,8 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+    
+    // Animate Dice
     const rot = elapsedTime * Math.PI * 0.25
     if(d20)
     {
