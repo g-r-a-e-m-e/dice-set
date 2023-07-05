@@ -8,11 +8,12 @@
   },
   "author": "@g-r-a-e-m-e",
   "devDependencies": {
+    "esbuild": "^0.18.11",
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "three": "^0.154.0",
     "dat.gui": "^0.7.9",
-    "gsap": "^3.12.2"
+    "gsap": "^3.12.2",
+    "three": "^0.154.0"
   }
 }
