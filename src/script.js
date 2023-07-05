@@ -48,6 +48,18 @@ gltfLoader.load(
     }
 )
 
+// D4
+let d6;
+gltfLoader.load(
+    '/dice/d6.glb',
+    (gltf) =>
+    {
+        d6 = gltf
+        d6.scene.position.set(-5, 0, 0)
+        scene.add(d6.scene)
+    }
+)
+
 /**
  * Lights
  */
@@ -92,7 +104,7 @@ window.addEventListener('resize', () =>
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+const camera = new THREE.PerspectiveCamera(90, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 1
 camera.position.y = 1
 camera.position.z = 8
@@ -132,6 +144,14 @@ const tick = () =>
         d4.scene.position.y = -Math.sin(rot) * 3
         d4.scene.position.x = Math.cos(rot) * 3
         d4.scene.position.z = Math.sin(rot * 0.5)
+    }
+    if(d6)
+    {
+        d6.scene.rotation.y = rot * 1.2
+        d6.scene.rotation.z = rot * 1.2 * 0.5
+        d6.scene.position.y = -Math.sin(rot) * 5.25
+        d6.scene.position.x = -Math.cos(rot) * 5.25
+        d6.scene.position.z = Math.sin(rot * 0.5)
     }
     
 
