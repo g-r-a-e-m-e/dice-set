@@ -94,6 +94,18 @@ gltfLoader.load(
     }
 )
 
+// D12
+let d12;
+gltfLoader.load(
+    '/dice/d12.glb',
+    (gltf) =>
+    {
+        d12 = gltf
+        d12.scene.position.set(-3, 0, 0)
+        scene.add(d12.scene)
+    }
+)
+
 /**
  * Lights
  */
@@ -210,6 +222,14 @@ const tick = () =>
         d100.scene.position.y = (-Math.sin(rot + Math.PI * 4 / 3) * 3)
         d100.scene.position.x = (Math.cos(rot + Math.PI * 4 / 3) * 3)
         d100.scene.position.z = Math.sin(rot * 0.5)
+    }
+    if(d12)
+    {
+        d12.scene.rotation.y = rot
+        d12.scene.rotation.z = rot * 0.5
+        d12.scene.position.y = (-Math.sin(rot + Math.PI * 5 / 3) * 3)
+        d12.scene.position.x = (Math.cos(rot + Math.PI * 5 / 3) * 3)
+        d12.scene.position.z = Math.sin(rot * 0.5)
     }
 
     // Update controls
