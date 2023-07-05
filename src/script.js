@@ -111,7 +111,7 @@ const tick = () =>
     if(d20)
     {
         d20.scene.rotation.y = rot
-        d20.scene.rotation.z = rot *0.5
+        d20.scene.rotation.z = rot * 0.5
     }
 
     // Update controls
